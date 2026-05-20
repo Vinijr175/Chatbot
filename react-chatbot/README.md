@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# AI Chatbot Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully functional interactive chatbot built using React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+##  Daily Development Log
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Day 1: Project Setup & Baseline
+* Bootstrapped the react-chatbot app using Vite, React, and TypeScript.
+* Configured the standard project structure and environment dependencies.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+    ### Day 2: Building the Chat UI Layout
+* I built the main chat interface from scratch and styled the layout using Tailwind CSS.
+* Set up the text input area so messages send when hitting the "Enter" key or clicking the button.
+* Added the message bubble layout so user texts float to the right (blue) and bot texts go to the left (gray).
+* Integrated react-markdown so the app can render clean text formatting from the AI responses.
+* Tossed in react-icons  LuBot and LuSendHorizontal to give the header and send button a cleaner look.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Day 3: Building the Logic Layer (Custom Hooks & API)
+* I created useChatbot.ts to manage the app state and handle the connection to the AI backend.
+* Integrated **Axios** to make POST requests to the OpenRouter API using the `google/gemma-3-12b-it` model.
+* Map-sorted the messages array dynamically to match the API's required structure (`user` to `user`, `bot` to `assistant`).
+* Secured my secret OpenRouter API credentials by moving them into an environment variable (`import.meta.env`).
+* Developed useChatScroll.ts using a generic TypeScript template to force the message window to auto-scroll down whenever new texts arrive.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Day 4: Wiring the App and Final Container Layout
+* I updated App.tsx to act as the main entry point, importing and rendering the ChatComponent cleanly.
+* Wrapped the chatbot interface inside a responsive, max-width wrapper (max-w-lg) so it centers nicely on desktop screens.
+* Styled the main container with a drop shadow (shadow-md) and rounded corners (rounded-lg) to make it look like a modern web application.
+* Ran local tests to ensure the components, Axios API hooks, and auto-scrolling logic communicate flawlessly without structural crashes.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
